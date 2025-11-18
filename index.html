@@ -22,6 +22,7 @@
       body {
         margin: 0;
         min-height: 100vh;
+        min-height: 100dvh;
         font-family: "Inter", "Poppins", "Segoe UI", system-ui, -apple-system,
           BlinkMacSystemFont, sans-serif;
         background-color: #040107;
@@ -39,8 +40,10 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        padding: 2.5rem 1.5rem;
-        overflow: hidden;
+        padding: clamp(1.25rem, 4vh, 2.5rem)
+          clamp(1rem, 3vw, 1.5rem);
+        overflow-x: clip;
+        overflow-y: auto;
         position: relative;
         isolation: isolate;
       }
@@ -256,6 +259,30 @@
       @media (min-width: 600px) {
         .button-row {
           grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+
+      @media (max-height: 820px) {
+        body {
+          align-items: flex-start;
+          padding-top: clamp(1rem, 6vh, 2.5rem);
+        }
+
+        .card {
+          margin-top: 0.5rem;
+        }
+      }
+
+      @media (max-height: 620px) {
+        .card {
+          transform: scale(0.92);
+          transform-origin: top center;
+        }
+      }
+
+      @media (max-height: 520px) {
+        .card {
+          transform: scale(0.85);
         }
       }
     </style>
