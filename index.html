@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dastak 90.8</title>
+    <style>
+      :root {
+        color-scheme: dark;
+        --glow-red: #b63e3a;
+        --glow-yellow: #f9f056;
+        --text: #f7f5f2;
+        --muted: rgba(247, 245, 242, 0.7);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        font-family: "Inter", "Poppins", "Segoe UI", system-ui, -apple-system,
+          BlinkMacSystemFont, sans-serif;
+        background: radial-gradient(
+            circle at 20% 20%,
+            rgba(182, 62, 58, 0.35),
+            transparent 50%
+          ),
+          radial-gradient(
+            circle at 80% 0%,
+            rgba(249, 240, 86, 0.25),
+            transparent 55%
+          ),
+          #080608;
+        color: var(--text);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 2.5rem 1.5rem;
+        overflow: hidden;
+      }
+
+      body::before,
+      body::after {
+        content: "";
+        position: fixed;
+        inset: -10%;
+        z-index: 0;
+        pointer-events: none;
+      }
+
+      body::before {
+        background: conic-gradient(
+          from 90deg,
+          rgba(182, 62, 58, 0.35),
+          rgba(249, 240, 86, 0.25),
+          rgba(182, 62, 58, 0.4),
+          rgba(14, 13, 20, 0.4)
+        );
+        filter: blur(120px);
+        animation: rotateGlow 18s linear infinite;
+      }
+
+      body::after {
+        background: linear-gradient(
+          125deg,
+          rgba(8, 6, 10, 0.8) 0%,
+          rgba(8, 6, 10, 0.2) 50%,
+          rgba(8, 6, 10, 0.8) 100%
+        );
+        backdrop-filter: blur(40px);
+      }
+
+      @keyframes rotateGlow {
+        from {
+          transform: rotate(0deg);
+        }
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      .card {
+        position: relative;
+        z-index: 1;
+        width: min(460px, 100%);
+        padding: 2.5rem 2rem;
+        border-radius: 30px;
+        background: rgba(10, 8, 15, 0.55);
+        box-shadow: 0 25px 55px rgba(0, 0, 0, 0.6),
+          inset 0 0 0 1px rgba(255, 255, 255, 0.04);
+        border: 1px solid rgba(247, 245, 242, 0.08);
+        backdrop-filter: blur(25px);
+        text-align: center;
+      }
+
+      .badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.35rem;
+        font-size: 0.85rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--muted);
+        background: rgba(247, 245, 242, 0.08);
+        border-radius: 999px;
+        padding: 0.35rem 0.9rem;
+        margin-bottom: 1.25rem;
+        border: 1px solid rgba(247, 245, 242, 0.08);
+      }
+
+      h1 {
+        margin: 0 0 0.75rem;
+        font-size: clamp(1.95rem, 4vw, 2.65rem);
+        line-height: 1.2;
+      }
+
+      p {
+        margin: 0 auto 1.75rem;
+        max-width: 32ch;
+        color: var(--muted);
+        line-height: 1.6;
+        font-size: 1rem;
+      }
+
+      .radio-visual {
+        width: min(300px, 80%);
+        margin: 0 auto 1.5rem;
+        display: block;
+        filter: drop-shadow(0 10px 35px rgba(0, 0, 0, 0.6))
+          drop-shadow(0 0 25px rgba(249, 240, 86, 0.2));
+      }
+
+      .button-row {
+        display: grid;
+        gap: 0.75rem;
+        margin-top: 2rem;
+      }
+
+      .store-button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.6rem;
+        padding: 0.85rem 1.25rem;
+        border-radius: 18px;
+        border: 1px solid rgba(247, 245, 242, 0.25);
+        color: var(--text);
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 0.95rem;
+        background: rgba(15, 13, 20, 0.45);
+        box-shadow: 0 20px 45px rgba(10, 8, 12, 0.7),
+          0 0 25px rgba(182, 62, 58, 0.35);
+        backdrop-filter: blur(20px);
+        transition: transform 200ms ease, box-shadow 200ms ease,
+          border-color 200ms ease;
+      }
+
+      .store-button span {
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        letter-spacing: 0.2em;
+        color: rgba(249, 240, 86, 0.85);
+      }
+
+      .store-button:hover,
+      .store-button:focus-visible {
+        transform: translateY(-2px) scale(1.01);
+        border-color: rgba(249, 240, 86, 0.55);
+        box-shadow: 0 25px 50px rgba(10, 8, 12, 0.8),
+          0 0 30px rgba(249, 240, 86, 0.35);
+      }
+
+      @media (min-width: 600px) {
+        .button-row {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+    </style>
+    <script>
+      (function redirectIfMobile() {
+        var ua = navigator.userAgent || navigator.vendor || window.opera;
+        var isIOS =
+          /iPad|iPhone|iPod/.test(ua) ||
+          (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+        var isAndroid = /Android/i.test(ua);
+
+        if (isIOS) {
+          window.location.replace(
+            "https://apps.apple.com/us/app/dastak-90-8/id6755237712"
+          );
+        } else if (isAndroid) {
+          window.location.replace(
+            "https://play.google.com/store/apps/details?id=dastak.samvit.xyz&pcampaignid=web_share"
+          );
+        }
+      })();
+    </script>
+  </head>
+  <body>
+    <main class="card">
+      <div class="badge">
+        <span aria-hidden="true">●</span>
+        Streaming Live
+      </div>
+      <img
+        src="radio.gif"
+        alt="Animated radio broadcasting tunes"
+        class="radio-visual"
+      />
+      <h1>Dastak 90.8 Community Radio</h1>
+      <p>
+        Tune into the heartbeat of the city. Discover community stories, culture,
+        and music crafted for every hour of the day.
+      </p>
+      <div class="button-row">
+        <a
+          class="store-button"
+          href="https://apps.apple.com/us/app/dastak-90-8/id6755237712"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <span>Get it on</span>
+          App Store
+        </a>
+        <a
+          class="store-button"
+          href="https://play.google.com/store/apps/details?id=dastak.samvit.xyz&pcampaignid=web_share"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <span>Get it on</span>
+          Play Store
+        </a>
+      </div>
+    </main>
+  </body>
+</html>
